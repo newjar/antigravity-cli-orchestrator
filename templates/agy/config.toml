@@ -1,0 +1,27 @@
+# Antigravity: configurable orchestrator + subagents
+#
+# Main knobs to change:
+#   model / model_reasoning_effort
+#   agents.default_subagent_model
+#   agents.default_subagent_reasoning_effort
+#   agents.max_concurrent_threads_per_session
+#
+# This is project-scoped: <repo>/.agy/config.toml
+
+# Root / orchestrator
+model = "gemini-3.1-pro-high"
+model_reasoning_effort = "high"
+
+# Safe interactive defaults
+approval_policy = "on-request"
+sandbox_mode = "workspace-write"
+
+[agents]
+enabled = true
+
+# Number of child agent threads Antigravity may keep open concurrently.
+max_concurrent_threads_per_session = 4
+
+# Default for any spawned subagent that does not explicitly choose a model.
+default_subagent_model = "gemini-3.8-flash-high"
+default_subagent_reasoning_effort = "high"
