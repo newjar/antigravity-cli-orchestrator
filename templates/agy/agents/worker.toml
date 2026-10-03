@@ -1,7 +1,7 @@
 name = "worker"
 description = "Implementation subagent for bounded coding tasks. Use after the relevant code path and acceptance criteria are understood."
 
-model = "gemini-3.1-pro-high"
+model = "claude-sonnet-5-5-high"
 model_reasoning_effort = "high"
 sandbox_mode = "workspace-write"
 workspace_mode = "inherit"

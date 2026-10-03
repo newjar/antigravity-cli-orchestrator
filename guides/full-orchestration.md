@@ -5,12 +5,12 @@ Choose this pattern for comprehensive features that benefit from a dedicated roo
 ## Orchestration Topology
 
 ```text
-Root Orchestrator (gemini-3.1-pro-high)
+Root Orchestrator (claude-sonnet-5-5-high)
 ├── Explorer     (gemini-3.8-flash-high) - Read-only repository mapping
 ├── Researcher   (gemini-3.8-flash-high) - Documentation & API verification
-├── Worker       (gemini-3.1-pro-high)   - Bounded implementation
+├── Worker       (claude-sonnet-5-5-high) - Bounded implementation
 ├── Tester       (gemini-3.8-flash-high) - Test suites & regression checks
-└── Reviewer     (gemini-3.1-pro-high)   - Independent post-change audit
+└── Reviewer     (claude-sonnet-5-5-high) - Independent post-change audit
 ```
 
 ## Configuration Files

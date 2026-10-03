@@ -1,25 +1,20 @@
 # Model Selection and Reasoning Effort
 
-Antigravity (`agy`) provides a diverse catalog of models tailored for different execution speeds, reasoning depths, and token cost profiles.
+Antigravity (`agy`) provides a curated selection of `gemini-3.8-*` and `claude-*` models tailored for speed, reasoning depth, and token efficiency.
 
-## Available Model Catalog
+## Curated Model Catalog
 
 | Identifier | Display Name | Best Suited For |
 | :--- | :--- | :--- |
 | `gemini-3.8-flash-high` | Gemini 3.8 Flash (High) | Fast exploration, tester runs, researchers, high-efficiency workers |
 | `gemini-3.8-flash-medium` | Gemini 3.8 Flash (Medium) | Balanced speed and cost for routine subagent tasks |
 | `gemini-3.8-flash-low` | Gemini 3.8 Flash (Low) | Minimal latency, simple lookups, and basic test execution |
-| `gemini-3.7-flash-high` | Gemini 3.7 Flash (High) | Stable flash tier for exploration and testing |
-| `gemini-3.7-flash-medium` | Gemini 3.7 Flash (Medium) | Medium-effort tasks on previous-generation Flash |
-| `gemini-3.7-flash-low` | Gemini 3.7 Flash (Low) | Low-effort fast responses |
-| `gemini-3.6-flash-high` | Gemini 3.6 Flash (High) | Legacy Flash model with high reasoning effort |
-| `gemini-3.6-flash-medium` | Gemini 3.6 Flash (Medium) | Legacy Flash model with medium reasoning effort |
-| `gemini-3.6-flash-low` | Gemini 3.6 Flash (Low) | Legacy Flash model with low reasoning effort |
-| `gemini-3.1-pro-high` | Gemini 3.1 Pro (High) | Root orchestrator, critical workers, deep architecture, security reviewer |
-| `gemini-3.1-pro-low` | Gemini 3.1 Pro (Low) | Fast Pro-tier execution with lower reasoning overhead |
-| `claude-sonnet-4-6` | Claude Sonnet 4.6 (Thinking) | Complex coding refactors, nuanced logic audits, and high-stakes reviews |
-| `claude-opus-4-6-thinking` | Claude Opus 4.6 (Thinking) | Maximum reasoning depth for mission-critical architectural design |
-| `gpt-oss-120b-medium` | GPT-OSS 120B (Medium) | Open-weight foundation model alternative |
+| `claude-opus-5-5-high` | Claude Opus 5.5 (High) | Maximum reasoning depth for critical architectural design and audits |
+| `claude-opus-5-5-medium` | Claude Opus 5.5 (Medium) | High-level synthesis with balanced thinking overhead |
+| `claude-opus-5-5-low` | Claude Opus 5.5 (Low) | High-capacity reasoning with minimal latency |
+| `claude-sonnet-5-5-high` | Claude Sonnet 5.5 (High) | Root orchestrator, critical workers, deep refactors, and security reviews |
+| `claude-sonnet-5-5-medium` | Claude Sonnet 5.5 (Medium) | Balanced implementation and code analysis |
+| `claude-sonnet-5-5-low` | Claude Sonnet 5.5 (Low) | Fast coding and code inspection |
 | `custom` | Custom Model ID | Any custom model identifier supported by your environment |
 
 ## Reasoning Effort Levels
@@ -33,7 +28,8 @@ Antigravity CLI supports configuring reasoning effort via `--effort <level>`:
 
 ## Best Practice Allocation
 
-- **Root / Orchestrator:** Use `gemini-3.1-pro-high` to ensure tasks are decomposed cleanly without context fragmentation.
-- **Worker:** Use `gemini-3.1-pro-high` for tricky logic or `gemini-3.8-flash-high` for routine implementations.
-- **Explorer & Researcher:** Use `gemini-3.8-flash-high` for fast indexing and web searches.
-- **Reviewer:** Use `gemini-3.1-pro-high` or `claude-sonnet-4-6` to catch subtle logic bugs, race conditions, and security issues.
+- **Root / Orchestrator:** Use `claude-sonnet-5-5-high` to ensure tasks are decomposed cleanly without context fragmentation.
+- **Worker:** Use `claude-sonnet-5-5-high` for high-precision coding or `gemini-3.8-flash-high` for routine implementations.
+- **Explorer & Researcher:** Use `gemini-3.8-flash-high` for fast indexing, read-only tracing, and web searches.
+- **Tester:** Use `gemini-3.8-flash-high` for running test suites and reproducing issues quickly.
+- **Reviewer:** Use `claude-sonnet-5-5-high` or `claude-opus-5-5-high` to catch subtle logic bugs, race conditions, and security issues.

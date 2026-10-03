@@ -58,44 +58,34 @@ confirm() {
     done
 }
 
-# Model catalog mapping
+# Model catalog mapping (gemini-3.8-* and claude-*)
 get_catalog_model() {
     case "$1" in
         1)  printf 'gemini-3.8-flash-high' ;;
         2)  printf 'gemini-3.8-flash-medium' ;;
         3)  printf 'gemini-3.8-flash-low' ;;
-        4)  printf 'gemini-3.7-flash-high' ;;
-        5)  printf 'gemini-3.7-flash-medium' ;;
-        6)  printf 'gemini-3.7-flash-low' ;;
-        7)  printf 'gemini-3.6-flash-high' ;;
-        8)  printf 'gemini-3.6-flash-medium' ;;
-        9)  printf 'gemini-3.6-flash-low' ;;
-        10) printf 'gemini-3.1-pro-high' ;;
-        11) printf 'gemini-3.1-pro-low' ;;
-        12) printf 'claude-sonnet-4-6' ;;
-        13) printf 'claude-opus-4-6-thinking' ;;
-        14) printf 'gpt-oss-120b-medium' ;;
+        4)  printf 'claude-opus-5-5-high' ;;
+        5)  printf 'claude-opus-5-5-medium' ;;
+        6)  printf 'claude-opus-5-5-low' ;;
+        7)  printf 'claude-sonnet-5-5-high' ;;
+        8)  printf 'claude-sonnet-5-5-medium' ;;
+        9)  printf 'claude-sonnet-5-5-low' ;;
         *)  return 1 ;;
     esac
 }
 
 print_catalog() {
-    printf '\n%s\n' 'Available Antigravity Models:'
+    printf '\n%s\n' 'Available Antigravity Models (Gemini 3.8 & Claude 5.5):'
     printf '  1)  gemini-3.8-flash-high      (Gemini 3.8 Flash - High)\n'
     printf '  2)  gemini-3.8-flash-medium    (Gemini 3.8 Flash - Medium)\n'
     printf '  3)  gemini-3.8-flash-low       (Gemini 3.8 Flash - Low)\n'
-    printf '  4)  gemini-3.7-flash-high      (Gemini 3.7 Flash - High)\n'
-    printf '  5)  gemini-3.7-flash-medium    (Gemini 3.7 Flash - Medium)\n'
-    printf '  6)  gemini-3.7-flash-low       (Gemini 3.7 Flash - Low)\n'
-    printf '  7)  gemini-3.6-flash-high      (Gemini 3.6 Flash - High)\n'
-    printf '  8)  gemini-3.6-flash-medium    (Gemini 3.6 Flash - Medium)\n'
-    printf '  9)  gemini-3.6-flash-low       (Gemini 3.6 Flash - Low)\n'
-    printf '  10) gemini-3.1-pro-high        (Gemini 3.1 Pro - High)\n'
-    printf '  11) gemini-3.1-pro-low         (Gemini 3.1 Pro - Low)\n'
-    printf '  12) claude-sonnet-4-6          (Claude Sonnet 4.6 - Thinking)\n'
-    printf '  13) claude-opus-4-6-thinking   (Claude Opus 4.6 - Thinking)\n'
-    printf '  14) gpt-oss-120b-medium        (GPT-OSS 120B - Medium)\n'
-    printf '  15) custom                     (Enter custom model ID)\n'
+    printf '  4)  claude-opus-5-5-high       (Claude Opus 5.5 - High)\n'
+    printf '  5)  claude-opus-5-5-medium     (Claude Opus 5.5 - Medium)\n'
+    printf '  6)  claude-opus-5-5-low        (Claude Opus 5.5 - Low)\n'
+    printf '  7)  claude-sonnet-5-5-high     (Claude Sonnet 5.5 - High)\n'
+    printf '  8)  claude-sonnet-5-5-medium   (Claude Sonnet 5.5 - Medium)\n'
+    printf '  9)  claude-sonnet-5-5-low      (Claude Sonnet 5.5 - Low)\n'
+    printf '  10) custom                     (Enter custom model ID)\n'
 }
 
 select_model() {
@@ -111,7 +101,7 @@ select_model() {
 
         case "$answer" in
             '') selected_model=$default_model; return ;;
-            15|custom|CUSTOM)
+            10|custom|CUSTOM)
                 printf 'Enter custom model ID: '
                 if ! IFS= read -r custom_id; then exit 1; fi
                 selected_model=$custom_id
@@ -224,7 +214,7 @@ replace_toml_int() {
 print_catalog
 
 # 2. Select models for each role
-select_model 'root / orchestrator' 'gemini-3.1-pro-high'
+select_model 'root / orchestrator' 'claude-sonnet-5-5-high'
 chosen_root=$selected_model
 
 select_model 'default subagent' 'gemini-3.8-flash-high'
@@ -233,13 +223,13 @@ chosen_default_sub=$selected_model
 select_model 'explorer' 'gemini-3.8-flash-high'
 chosen_explorer=$selected_model
 
-select_model 'worker' 'gemini-3.1-pro-high'
+select_model 'worker' 'claude-sonnet-5-5-high'
 chosen_worker=$selected_model
 
 select_model 'tester' 'gemini-3.8-flash-high'
 chosen_tester=$selected_model
 
-select_model 'reviewer' 'gemini-3.1-pro-high'
+select_model 'reviewer' 'claude-sonnet-5-5-high'
 chosen_reviewer=$selected_model
 
 select_model 'researcher' 'gemini-3.8-flash-high'

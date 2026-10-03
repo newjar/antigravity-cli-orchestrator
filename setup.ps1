@@ -47,35 +47,25 @@ $ModelCatalog = @{
     "1"  = "gemini-3.8-flash-high"
     "2"  = "gemini-3.8-flash-medium"
     "3"  = "gemini-3.8-flash-low"
-    "4"  = "gemini-3.7-flash-high"
-    "5"  = "gemini-3.7-flash-medium"
-    "6"  = "gemini-3.7-flash-low"
-    "7"  = "gemini-3.6-flash-high"
-    "8"  = "gemini-3.6-flash-medium"
-    "9"  = "gemini-3.6-flash-low"
-    "10" = "gemini-3.1-pro-high"
-    "11" = "gemini-3.1-pro-low"
-    "12" = "claude-sonnet-4-6"
-    "13" = "claude-opus-4-6-thinking"
-    "14" = "gpt-oss-120b-medium"
+    "4"  = "claude-opus-5-5-high"
+    "5"  = "claude-opus-5-5-medium"
+    "6"  = "claude-opus-5-5-low"
+    "7"  = "claude-sonnet-5-5-high"
+    "8"  = "claude-sonnet-5-5-medium"
+    "9"  = "claude-sonnet-5-5-low"
 }
 
-Write-Host "`nAvailable Antigravity Models:"
+Write-Host "`nAvailable Antigravity Models (Gemini 3.8 & Claude 5.5):"
 Write-Host "  1)  gemini-3.8-flash-high      (Gemini 3.8 Flash - High)"
 Write-Host "  2)  gemini-3.8-flash-medium    (Gemini 3.8 Flash - Medium)"
 Write-Host "  3)  gemini-3.8-flash-low       (Gemini 3.8 Flash - Low)"
-Write-Host "  4)  gemini-3.7-flash-high      (Gemini 3.7 Flash - High)"
-Write-Host "  5)  gemini-3.7-flash-medium    (Gemini 3.7 Flash - Medium)"
-Write-Host "  6)  gemini-3.7-flash-low       (Gemini 3.7 Flash - Low)"
-Write-Host "  7)  gemini-3.6-flash-high      (Gemini 3.6 Flash - High)"
-Write-Host "  8)  gemini-3.6-flash-medium    (Gemini 3.6 Flash - Medium)"
-Write-Host "  9)  gemini-3.6-flash-low       (Gemini 3.6 Flash - Low)"
-Write-Host "  10) gemini-3.1-pro-high        (Gemini 3.1 Pro - High)"
-Write-Host "  11) gemini-3.1-pro-low         (Gemini 3.1 Pro - Low)"
-Write-Host "  12) claude-sonnet-4-6          (Claude Sonnet 4.6 - Thinking)"
-Write-Host "  13) claude-opus-4-6-thinking   (Claude Opus 4.6 - Thinking)"
-Write-Host "  14) gpt-oss-120b-medium        (GPT-OSS 120B - Medium)"
-Write-Host "  15) custom                     (Enter custom model ID)"
+Write-Host "  4)  claude-opus-5-5-high       (Claude Opus 5.5 - High)"
+Write-Host "  5)  claude-opus-5-5-medium     (Claude Opus 5.5 - Medium)"
+Write-Host "  6)  claude-opus-5-5-low        (Claude Opus 5.5 - Low)"
+Write-Host "  7)  claude-sonnet-5-5-high     (Claude Sonnet 5.5 - High)"
+Write-Host "  8)  claude-sonnet-5-5-medium   (Claude Sonnet 5.5 - Medium)"
+Write-Host "  9)  claude-sonnet-5-5-low      (Claude Sonnet 5.5 - Low)"
+Write-Host "  10) custom                     (Enter custom model ID)"
 
 function Select-RoleModel($RoleName, $DefaultModel) {
     while ($true) {
@@ -83,7 +73,7 @@ function Select-RoleModel($RoleName, $DefaultModel) {
         if ([string]::IsNullOrWhiteSpace($ans)) {
             return $DefaultModel
         }
-        if ($ans -eq "15" -or $ans -eq "custom") {
+        if ($ans -eq "10" -or $ans -eq "custom") {
             $custom = Read-Host "Enter custom model ID"
             return $custom
         }
@@ -107,12 +97,12 @@ function Select-Concurrency($DefaultVal = "4") {
     }
 }
 
-$RootModel = Select-RoleModel "root / orchestrator" "gemini-3.1-pro-high"
+$RootModel = Select-RoleModel "root / orchestrator" "claude-sonnet-5-5-high"
 $DefaultSubModel = Select-RoleModel "default subagent" "gemini-3.8-flash-high"
 $ExplorerModel = Select-RoleModel "explorer" "gemini-3.8-flash-high"
-$WorkerModel = Select-RoleModel "worker" "gemini-3.1-pro-high"
+$WorkerModel = Select-RoleModel "worker" "claude-sonnet-5-5-high"
 $TesterModel = Select-RoleModel "tester" "gemini-3.8-flash-high"
-$ReviewerModel = Select-RoleModel "reviewer" "gemini-3.1-pro-high"
+$ReviewerModel = Select-RoleModel "reviewer" "claude-sonnet-5-5-high"
 $ResearcherModel = Select-RoleModel "researcher" "gemini-3.8-flash-high"
 $Concurrency = Select-Concurrency "4"
 

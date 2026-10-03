@@ -64,7 +64,7 @@ class ShellInstallerTests(unittest.TestCase):
             config_file = target / ".agy" / "config.toml"
             self.assertTrue(config_file.is_file())
             content = config_file.read_text(encoding="utf-8")
-            self.assertIn('model = "gemini-3.1-pro-high"', content)
+            self.assertIn('model = "claude-sonnet-5-5-high"', content)
             self.assertIn('max_concurrent_threads_per_session = 4', content)
 
             for role in ("explorer", "worker", "tester", "reviewer", "researcher"):
@@ -81,17 +81,17 @@ class ShellInstallerTests(unittest.TestCase):
             self.assertIn("agy-orchestrator", gemini_file.read_text(encoding="utf-8"))
 
     def test_custom_numeric_models_and_concurrency(self):
-        # 10: gemini-3.1-pro-high
+        # 4: claude-opus-5-5-high
         # 1: gemini-3.8-flash-high
-        # 12: claude-sonnet-4-6
+        # 7: claude-sonnet-5-5-high
         # custom concurrency: 6
         answers = (
-            "12",  # root: claude-sonnet-4-6
+            "4",   # root: claude-opus-5-5-high
             "1",   # default subagent: gemini-3.8-flash-high
             "1",   # explorer: gemini-3.8-flash-high
-            "10",  # worker: gemini-3.1-pro-high
+            "7",   # worker: claude-sonnet-5-5-high
             "1",   # tester: gemini-3.8-flash-high
-            "12",  # reviewer: claude-sonnet-4-6
+            "4",   # reviewer: claude-opus-5-5-high
             "1",   # researcher: gemini-3.8-flash-high
             "6",   # concurrency: 6
             "y",   # install .agy
@@ -103,14 +103,14 @@ class ShellInstallerTests(unittest.TestCase):
             self.run_installer(target, answers)
 
             config = (target / ".agy" / "config.toml").read_text(encoding="utf-8")
-            self.assertIn('model = "claude-sonnet-4-6"', config)
+            self.assertIn('model = "claude-opus-5-5-high"', config)
             self.assertIn('default_subagent_model = "gemini-3.8-flash-high"', config)
             self.assertIn("max_concurrent_threads_per_session = 6", config)
 
             reviewer = (target / ".agy" / "agents" / "reviewer.toml").read_text(
                 encoding="utf-8"
             )
-            self.assertIn('model = "claude-sonnet-4-6"', reviewer)
+            self.assertIn('model = "claude-opus-5-5-high"', reviewer)
 
     def test_gemini_md_merging_preserves_content(self):
         existing_rule = "# Custom Project Guidelines\nAlways use tabs.\n"
@@ -143,7 +143,7 @@ class PowerShellInstallerTests(unittest.TestCase):
             )
             self.assertEqual(result.returncode, 0, result.stderr)
             config = (target / ".agy" / "config.toml").read_text(encoding="utf-8")
-            self.assertIn('model = "gemini-3.1-pro-high"', config)
+            self.assertIn('model = "claude-sonnet-5-5-high"', config)
 
 
 if __name__ == "__main__":

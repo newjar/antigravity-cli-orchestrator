@@ -8,7 +8,7 @@ In `.agy/config.toml`:
 
 ```toml
 # Root / orchestrator
-model = "gemini-3.1-pro-high"
+model = "claude-sonnet-5-5-high"
 model_reasoning_effort = "high"
 
 approval_policy = "on-request"
@@ -23,9 +23,9 @@ default_subagent_reasoning_effort = "high"
 
 In `.agy/agents/`:
 - `explorer.toml`: `gemini-3.8-flash-high`
-- `worker.toml`: `gemini-3.8-flash-high` (or `gemini-3.1-pro-high`)
+- `worker.toml`: `gemini-3.8-flash-high` (or `claude-sonnet-5-5-high`)
 - `tester.toml`: `gemini-3.8-flash-high`
-- `reviewer.toml`: `gemini-3.1-pro-high`
+- `reviewer.toml`: `claude-sonnet-5-5-high`
 - `researcher.toml`: `gemini-3.8-flash-high`
 
 ## Workflow Pattern

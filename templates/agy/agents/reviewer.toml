@@ -1,7 +1,7 @@
 name = "reviewer"
 description = "Review subagent for independent post-change verification, regressions, edge cases, and security review."
 
-model = "gemini-3.1-pro-high"
+model = "claude-sonnet-5-5-high"
 model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 workspace_mode = "inherit"

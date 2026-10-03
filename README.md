@@ -9,7 +9,7 @@ A model-configurable AI agent orchestration setup for Google Antigravity (`agy`)
 This repository is adapted from [`codex-orchestrator`](https://github.com/newjar/codex-orchestrator) (itself inspired by `donvito/codex-astra-luna-orchestrator`), re-engineered specifically for Google Antigravity (`agy`).
 
 Key Antigravity adaptations:
-- **Direct Model Selection:** Rather than imposing fixed plan tiers, the installer presents a verified catalog of 14 Antigravity models (`gemini-3.8-flash`, `gemini-3.7-flash`, `gemini-3.6-flash`, `gemini-3.1-pro`, Claude models, and GPT-OSS) with thinking/reasoning effort settings.
+- **Direct Model Selection:** Rather than imposing fixed plan tiers, the installer presents a curated catalog of `gemini-3.8-*` and `claude-*` models with thinking/reasoning effort settings.
 - **Native Tooling:** Replaces Codex's `spawn_agent` with Antigravity's native `invoke_subagent` tool, leveraging Antigravity's reactive wakeup mechanism.
 - **Workspace Isolation:** Supports Antigravity workspace modes (`inherit`, `branch`, `share`) to isolate concurrent worker edits.
 - **Project Structure:** Writes project-scoped role configurations to `.agy/config.toml` and `.agy/agents/*.toml`, installs `.agents/skills/agy-orchestrator/SKILL.md`, and configures `GEMINI.md` / `AGENTS.md`.
@@ -64,9 +64,9 @@ When users accept recommended defaults during setup:
 
 | Role | Default Model | Reasoning Effort | Primary Focus |
 | :--- | :--- | :--- | :--- |
-| **Root / Orchestrator** | `gemini-3.1-pro-high` | High | Architecture, task decomposition, integration, synthesis |
-| **Worker** | `gemini-3.1-pro-high` | High | Bounded implementation with focused diffs |
-| **Reviewer** | `gemini-3.1-pro-high` | High | Independent diff review, security, and edge-case validation |
+| **Root / Orchestrator** | `claude-sonnet-5-5-high` | High | Architecture, task decomposition, integration, synthesis |
+| **Worker** | `claude-sonnet-5-5-high` | High | Bounded implementation with focused diffs |
+| **Reviewer** | `claude-sonnet-5-5-high` | High | Independent diff review, security, and edge-case validation |
 | **Explorer** | `gemini-3.8-flash-high` | High | Read-only repository mapping and symbol tracing |
 | **Tester** | `gemini-3.8-flash-high` | High | Bug reproduction, regression validation, test execution |
 | **Researcher** | `gemini-3.8-flash-high` | High | External API verification and documentation search |

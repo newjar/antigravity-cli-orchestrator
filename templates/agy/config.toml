@@ -9,7 +9,7 @@
 # This is project-scoped: <repo>/.agy/config.toml
 
 # Root / orchestrator
-model = "gemini-3.1-pro-high"
+model = "claude-sonnet-5-5-high"
 model_reasoning_effort = "high"
 
 # Safe interactive defaults
